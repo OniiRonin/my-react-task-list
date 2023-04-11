@@ -3,6 +3,7 @@ import './App.css';
 import { TodoAdd } from './components/TodoAdd';
 import { TodoList } from './components/TodoList';
 import { useTodo } from './hooks/useTodo';
+import { confirmDeleteTodo, showAddTodoAlert, showCompleteTodoAlert, confirmUncompleteTodo, showNewTodoAlert } from './hooks/alert';
 
 function App() {
   const {
@@ -14,6 +15,28 @@ function App() {
     handleCompleteTodo,
     handleUpdateTodo,
   } = useTodo();
+
+  const onDeleteTodo = (id) => {
+    confirmDeleteTodo(() => {
+      handleDeleteTodo(id);
+    });
+  };
+
+  const onCompleteTodo = (id) => {
+    handleCompleteTodo(id);
+    showCompleteTodoAlert();
+  };
+
+  const onUncompleteTodo = (id) => {
+    confirmUncompleteTodo(() => {
+      handleUpdateTodo(id, { completed: false });
+    });
+  };
+
+  const onNewTodo = (todo) => {
+    handleNewTodo(todo);
+    showNewTodoAlert();
+  };
 
   return (
     <>
@@ -30,14 +53,15 @@ function App() {
 
         <div className='add-todo'>
           <h3>Agregar Tarea</h3>
-          <TodoAdd handleNewTodo={handleNewTodo} />
+          <TodoAdd handleNewTodo={onNewTodo} showAddTodoAlert={showAddTodoAlert} />
         </div>
 
         <TodoList
           todos={todos}
           handleUpdateTodo={handleUpdateTodo}
-          handleDeleteTodo={handleDeleteTodo}
-          handleCompleteTodo={handleCompleteTodo}
+          handleDeleteTodo={onDeleteTodo}
+          handleCompleteTodo={onCompleteTodo}
+          handleUncompleteTodo={onUncompleteTodo}
         />
       </div>
     </>

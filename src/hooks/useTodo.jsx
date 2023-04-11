@@ -17,11 +17,9 @@ export const useTodo = () => {
     const todosCount = todos.length
     const pendingTodosCount = todos.filter(todo => !todo.done).length
 
-
     useEffect(() => {
         localStorage.setItem('todos', JSON.stringify(todos))
     }, [todos])
-
 
     const handleNewTodo = todo => {
         const action = {
@@ -50,6 +48,15 @@ export const useTodo = () => {
         dispatch(action);
     };
 
+    const handleUncompleteTodo = id => {
+        const action = {
+            type: 'Uncomplete Todo',
+            payload: id,
+        };
+
+        dispatch(action);
+    };
+
     const handleUpdateTodo = (id, description) => {
         const action = {
             type: 'Update Todo',
@@ -69,6 +76,7 @@ export const useTodo = () => {
         handleNewTodo,
         handleDeleteTodo,
         handleCompleteTodo,
+        handleUncompleteTodo,
         handleUpdateTodo
-    }
+    };
 };
