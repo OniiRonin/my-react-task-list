@@ -6,10 +6,11 @@
 
 :root {
   --rojo: #ba181b;
-  --azul: #00b4d8;
+  --azul: #0056d8;
   --azul-hover: #48cae4;
   --rojo-hover: #e5383b;
-  --verde: #09a129;
+  --azul-task:#059af7;
+  --naranja-active: #fc8a3e;
 }
 
 body {
@@ -22,6 +23,7 @@ body {
 
 .card-to-do {
   box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.2);
+  background-color: rgb(109, 109, 109);
   padding: 25px;
   border-radius: 20px;
   width: 700px;
@@ -42,7 +44,7 @@ h1 {
 }
 
 .counter-todos span {
-  color: #f29559;
+  color: #fc8a3e;
   font-weight: 700;
   font-size: 24px;
   margin-left: 10px;
@@ -81,9 +83,9 @@ ul li form {
   font-weight: 500;
   font-family: inherit;
   font-size: 18px;
-  color: #555;
+  color: #fff;
   width: 100%;
-  /* background-color: #000; */
+  background-color: transparent;
   outline: none;
 }
 
@@ -92,12 +94,12 @@ ul li form {
   width: 24px;
   height: 24px;
   border-radius: 20px;
-  border: 2px solid var(--verde);
+  border: 2px solid var(--naranja-active);
   cursor: pointer;
 }
 
 .container-done.active {
-  background-color: var(--verde);
+  background-color: var(--azul-task);
 }
 
 .text-decoration-dashed {
@@ -155,12 +157,12 @@ form {
   border: none;
   outline: none;
   padding: 10px 20px;
-  box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.15);
+  box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.896);
   border-radius: 20px;
   flex: 1;
   font-family: inherit;
   font-size: 17px;
-  color: #555;
+  color: #4d4d4d;
 }
 
 .btn-add {
