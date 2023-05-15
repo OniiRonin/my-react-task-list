@@ -1,35 +1,50 @@
 import React from 'react';
-import { useForm } from '../hooks/useForm';
+import { useForm } from 'react-hook-form';
 
 export const TodoAdd = ({ handleNewTodo }) => {
-    const { description, onInputChange, onResetForm } = useForm({
-        description: '',
+    const {
+        register,
+        handleSubmit,
+        formState: { errors },
+        reset,
+    } = useForm({
+        mode: "onChange"
     });
 
-    const onFormSubmit = e => {
-        e.preventDefault();
-
-        if (description.length <= 1) return;
-
+    const onFormSubmit = (data) => {
         let newTodo = {
             id: new Date().getTime(),
-            description: description,
+            title: data.title,
+            description: data.description || '',
             done: false,
         };
 
         handleNewTodo(newTodo);
-        onResetForm();
+        reset();
     };
 
     return (
-        <form onSubmit={onFormSubmit}>
+        <form onSubmit={handleSubmit(onFormSubmit)}>
+            <input
+                type='text'
+                className='input-add'
+                name='title'
+                {...register('title', { required: true, minLength: 3 })}
+                placeholder='¿Qué hay que hacer?'
+            />
+            {errors.title && errors.title.type === 'required' && (
+                <p>Campo Obligatorio</p>
+            )}
+            {errors.title && errors.title.type === 'minLength' && (
+                <p>El campo debe tener al menos 3 caracteres</p>
+            )}
+
             <input
                 type='text'
                 className='input-add'
                 name='description'
-                value={description}
-                onChange={onInputChange}
-                placeholder='¿Qué hay que hacer?'
+                {...register('description')}
+                placeholder='Descripción'
             />
 
             <button className='btn-add' type='submit'>

@@ -3,7 +3,8 @@ import { FaEdit } from 'react-icons/fa';
 import { useForm } from '../hooks/useForm';
 
 export const TodoUpdate = ({ todo, handleUpdateTodo }) => {
-    const { updateDescription, onInputChange } = useForm({
+    const { updateTitle, updateDescription, onInputChange } = useForm({
+        updateTitle: todo.title,
         updateDescription: todo.description,
     });
 
@@ -14,9 +15,10 @@ export const TodoUpdate = ({ todo, handleUpdateTodo }) => {
         e.preventDefault();
 
         const id = todo.id;
+        const title = updateTitle;
         const description = updateDescription;
 
-        handleUpdateTodo(id, description);
+        handleUpdateTodo(id, title, description);
 
         setDisabled(!disabled);
 
@@ -27,14 +29,23 @@ export const TodoUpdate = ({ todo, handleUpdateTodo }) => {
         <form onSubmit={onSubmitUpdate}>
             <input
                 type='text'
-                className={`input-update ${todo.done ? 'text-decoration-dashed' : ''
-                    }`}
+                className={`input-update ${todo.done ? 'text-decoration-dashed' : ''}`}
+                name='updateTitle'
+                value={updateTitle}
+                onChange={onInputChange}
+                placeholder='Título'
+                readOnly={disabled}
+                ref={focusInputRef}
+            />
+
+            <input
+                type='text'
+                className={`input-update ${todo.done ? 'text-decoration-dashed' : ''}`}
                 name='updateDescription'
                 value={updateDescription}
                 onChange={onInputChange}
-                placeholder='¿Qué hay que hacer?'
+                placeholder='Descripción'
                 readOnly={disabled}
-                ref={focusInputRef}
             />
 
             <button className='btn-edit' type='submit'>

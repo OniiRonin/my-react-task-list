@@ -9,7 +9,7 @@
   --azul: #0056d8;
   --azul-hover: #48cae4;
   --rojo-hover: #e5383b;
-  --azul-task:#059af7;
+  --azul-task: #059af7;
   --naranja-active: #fc8a3e;
 }
 
@@ -60,7 +60,7 @@ ul {
 ul li {
   list-style: none;
   display: flex;
-  justify-content: space-between;
+  flex-direction: column;
   align-items: center;
   gap: 20px;
 }
@@ -76,6 +76,8 @@ ul li form {
   flex: 1;
   display: flex;
   justify-content: space-between;
+  flex-direction: row;
+  align-items: baseline;
 }
 
 .input-update {
@@ -87,6 +89,8 @@ ul li form {
   width: 100%;
   background-color: transparent;
   outline: none;
+  padding: 5px 20px;
+  margin-bottom: 10px;
 }
 
 .container-done {
@@ -142,8 +146,23 @@ ul li form {
   background-color: var(--azul-hover);
 }
 
+.todo-item-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.todo-item-actions {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+
 form {
   display: flex;
+  flex-direction: column;
+  /* Added */
   gap: 20px;
 }
 
@@ -163,6 +182,8 @@ form {
   font-family: inherit;
   font-size: 17px;
   color: #4d4d4d;
+  margin-bottom: 10px;
+  /* Added */
 }
 
 .btn-add {
