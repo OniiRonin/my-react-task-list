@@ -1,82 +1,78 @@
-import { useEffect, useReducer } from 'react';
-import { todoReducer } from '../todoreducer';
+import { useEffect, useReducer } from "react";
+import { todoReducer } from "../todoreducer";
 
 export const useTodo = () => {
-    const initialState = [];
+  const initialState = [];
 
-    const init = () => {
-        return JSON.parse(localStorage.getItem('todos')) || []
-    }
+  const init = () => {
+    return JSON.parse(localStorage.getItem("todos")) || [];
+  };
 
-    const [todos, dispatch] = useReducer(
-        todoReducer,
-        initialState,
-        init
-    );
+  const [todos, dispatch] = useReducer(todoReducer, initialState, init);
 
-    const todosCount = todos.length
-    const pendingTodosCount = todos.filter(todo => !todo.done).length
+  const todosCount = todos.length;
+  const pendingTodosCount = todos.filter((todo) => !todo.done).length;
 
-    useEffect(() => {
-        localStorage.setItem('todos', JSON.stringify(todos))
-    }, [todos])
+  useEffect(() => {
+    localStorage.setItem("todos", JSON.stringify(todos));
+  }, [todos]);
 
-    const handleNewTodo = todo => {
-        const action = {
-            type: 'Add Todo',
-            payload: todo,
-        };
-
-        dispatch(action);
+  const handleNewTodo = (todo) => {
+    const action = {
+      type: "Add Todo",
+      payload: todo,
     };
 
-    const handleDeleteTodo = id => {
-        const action = {
-            type: 'Delete Todo',
-            payload: id,
-        };
+    dispatch(action);
+  };
 
-        dispatch(action);
+  const handleDeleteTodo = (id) => {
+    const action = {
+      type: "Delete Todo",
+      payload: id,
     };
 
-    const handleCompleteTodo = id => {
-        const action = {
-            type: 'Complete Todo',
-            payload: id,
-        };
+    dispatch(action);
+  };
 
-        dispatch(action);
+  const handleCompleteTodo = (id) => {
+    const action = {
+      type: "Complete Todo",
+      payload: id,
     };
 
-    const handleUncompleteTodo = id => {
-        const action = {
-            type: 'Uncomplete Todo',
-            payload: id,
-        };
+    dispatch(action);
+  };
 
-        dispatch(action);
+  const handleUncompleteTodo = (id) => {
+    const action = {
+      type: "Uncomplete Todo",
+      payload: id,
     };
 
-    const handleUpdateTodo = (id, description) => {
-        const action = {
-            type: 'Update Todo',
-            payload: {
-                id,
-                description,
-            },
-        };
+    dispatch(action);
+  };
 
-        dispatch(action);
+  const handleUpdateTodo = (id, description) => {
+    const action = {
+      type: "Update Todo",
+      payload: {
+        id,
+        description,
+      },
     };
 
-    return {
-        todos,
-        todosCount,
-        pendingTodosCount,
-        handleNewTodo,
-        handleDeleteTodo,
-        handleCompleteTodo,
-        handleUncompleteTodo,
-        handleUpdateTodo
-    };
+    dispatch(action);
+  };
+
+  return {
+    todos,
+    todosCount,
+    pendingTodosCount,
+    handleNewTodo,
+    handleDeleteTodo,
+    handleCompleteTodo,
+    handleUncompleteTodo,
+    handleUpdateTodo,
+  };
 };
