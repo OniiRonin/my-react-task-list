@@ -82,24 +82,19 @@ body {
 
 /* Estilos para el componente Menu */
 .menu {
-  background-color: #071b2f;
-  /* Color de fondo oscuro */
+background-color: #071b2f;
   color: #fff;
-  /* Color de texto claro */
   padding: 10px;
-  /* Espacio interno para el logo */
   display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between;
-  align-items: baseline;
   border-radius: 1rem;
+  flex-direction: column;
 }
 
 .logo {
-  margin-bottom: 4px;
+  margin-bottom: 10px;
   display: flex;
-  height: 8px;
-  width: 8px;
+  height: 20px;
+  width: 50px;
   align-items: baseline;
 }
 
@@ -147,13 +142,13 @@ body {
 
 h1 {
   text-align: center;
-  color: #ffffff;
+  color: black;
 }
 
 h2,
 h3,
 p {
-  color: #fff;
+  color: black;
 }
 
 .counter-todos {
@@ -320,5 +315,44 @@ form {
 }
 
 .btn-add:hover {
+  background-color: var(--azul-hover);
+}
+
+.dark-mode {
+  /* Estilos para el modo oscuro */
+  background-color: #06142c;
+}
+
+.dark-mode .menu {
+  background-color: #06142c;
+  /* Color de fondo oscuro */
+  color: #fff;
+  /* Color de texto claro */
+}
+
+.dark-mode .menu-link:hover {
+  color: #fc8a3e;
+}
+
+.dark-mode h1,
+.dark-mode h2,
+.dark-mode h3,
+.dark-mode p {
+  color: #fff;
+}
+
+.dark-mode .btn-delete {
+  background-color: var(--rojo);
+}
+
+.dark-mode .btn-delete:hover {
+  background-color: var(--rojo-hover);
+}
+
+.dark-mode .btn-edit {
+  background-color: var(--azul);
+}
+
+.dark-mode .btn-edit:hover {
   background-color: var(--azul-hover);
 }

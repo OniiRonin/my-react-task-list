@@ -1,3 +1,5 @@
+import React from "react";
+import { Box, Heading, Text } from "@chakra-ui/react";
 import { TodoAdd } from "../components/TodoAdd";
 import { TodoList } from "../components/TodoList";
 import { useTodo } from "../hooks/useTodo";
@@ -43,37 +45,32 @@ function Tareas() {
   };
 
   return (
-    <>
-      <div className="tareas">
-        <div className="card-to-do">
-          <h1>Lista de tareas</h1>
-          <div className="counter-todos">
-            <h3>
-              N° Tareas: <span>{todosCount}</span>
-            </h3>
-            <h3>
-              Pendientes: <span>{pendingTodosCount}</span>
-            </h3>
-          </div>
+    <Box className="tareas" >
+      <Box className="card-to-do">
+        <Heading as="h1">Lista de tareas</Heading>
+        <Box className="counter-todos">
+          <Text>
+            N° Tareas: <span>{todosCount}</span>
+          </Text>
+          <Text>
+            Pendientes: <span>{pendingTodosCount}</span>
+          </Text>
+        </Box>
 
-          <div className="add-todo">
-            <h3>Agregar Tarea</h3>
-            <TodoAdd
-              handleNewTodo={onNewTodo}
-              showAddTodoAlert={showAddTodoAlert}
-            />
-          </div>
+        <Box className="add-todo">
+          <Heading as="h3">Agregar Tarea</Heading>
+          <TodoAdd handleNewTodo={onNewTodo} showAddTodoAlert={showAddTodoAlert} />
+        </Box>
 
-          <TodoList
-            todos={todos}
-            handleUpdateTodo={handleUpdateTodo}
-            handleDeleteTodo={onDeleteTodo}
-            handleCompleteTodo={onCompleteTodo}
-            handleUncompleteTodo={onUncompleteTodo}
-          />
-        </div>
-      </div>
-    </>
+        <TodoList
+          todos={todos}
+          handleUpdateTodo={handleUpdateTodo}
+          handleDeleteTodo={onDeleteTodo}
+          handleCompleteTodo={onCompleteTodo}
+          handleUncompleteTodo={onUncompleteTodo}
+        />
+      </Box>
+    </Box>
   );
 }
 
