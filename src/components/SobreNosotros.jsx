@@ -1,21 +1,25 @@
 import React from "react";
-import { Box, Heading, Text } from "@chakra-ui/react";
+import { Box, Heading, Text, useColorModeValue } from "@chakra-ui/react";
+import personImage from "../assets/person-3.png";
 
 const SobreNosotros = () => {
+  const textColor = useColorModeValue("black", "white");
+  const bgColor = useColorModeValue("#fff", "#071b2f");
+
   return (
     <Box className="container">
-      <Box className="about">
-        <Heading as="h2" className="sobre-nosotros-title">
+      <Box className="about" bg={bgColor} style={{
+        backgroundImage: `url(${personImage})`,
+        backgroundPosition: "right",
+        backgroundRepeat: "no-repeat",
+        backgroundSize: "auto 850px"
+      }}>
+        <Heading as="h1" className="sobre-nosotros-title" color={textColor}>
           Sobre Nosotros
         </Heading>
-        <Text>
-          Nuestra aplicación de tareas es una herramienta diseñada para ayudarte a gestionar tus actividades diarias de forma efectiva.
-        </Text>
-        <Text>
-          Puedes agregar, completar y eliminar tareas, manteniendo un registro claro de tus responsabilidades.
-        </Text>
-        <Text>
-          Utilizamos React, React Router y otras tecnologías modernas para desarrollar esta aplicación.
+        <Text color={textColor}>
+          Somos un equipo comprometido en brindar soluciones de organización
+          personal a través de nuestra aplicación To-Do App.
         </Text>
       </Box>
     </Box>
