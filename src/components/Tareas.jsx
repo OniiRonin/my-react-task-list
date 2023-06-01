@@ -45,9 +45,11 @@ function Tareas() {
   };
 
   return (
-    <Box className="tareas" >
+    <Box className="tareas">
       <Box className="card-to-do">
-        <Heading as="h1">Lista de tareas</Heading>
+        <Heading as="h1" color="blue.500">
+          Lista de tareas
+        </Heading>
         <Box className="counter-todos">
           <Text>
             N° Tareas: <span>{todosCount}</span>
@@ -58,7 +60,9 @@ function Tareas() {
         </Box>
 
         <Box className="add-todo">
-          <Heading as="h3">Agregar Tarea</Heading>
+          <Heading as="h3" color="blue.500">
+            Agregar Tarea
+          </Heading>
           <TodoAdd handleNewTodo={onNewTodo} showAddTodoAlert={showAddTodoAlert} />
         </Box>
 

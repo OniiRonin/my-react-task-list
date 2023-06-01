@@ -6,7 +6,7 @@ import Home from './components/Home';
 import Tareas from './components/Tareas';
 import SobreNosotros from './components/SobreNosotros';
 import Menu from './components/Menu';
-import ToggleColorMode from './components/ToggleColorMode';
+
 import './App.css';
 
 const App = () => {
@@ -17,7 +17,6 @@ const App = () => {
     <ChakraProvider theme={theme}>
       <div className="container">
         <Menu />
-        <ToggleColorMode />
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/tareas" element={<Tareas />} />
