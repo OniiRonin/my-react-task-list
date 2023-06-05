@@ -20,6 +20,7 @@ body {
 .container {
   margin: auto;
   padding: 0px;
+  height: 89vh;
 }
 
 /* Estilos para el componente Home */

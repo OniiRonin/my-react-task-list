@@ -1,9 +1,9 @@
 import React from 'react';
 import { Route, Routes } from 'react-router-dom';
 import { ChakraProvider, useColorMode } from '@chakra-ui/react';
-import { lightTheme, darkTheme } from './theme';
+import { lightTheme, darkTheme } from './utils/theme';
+import { Tareas } from './components/Tareas';
 import Home from './components/Home';
-import Tareas from './components/Tareas';
 import SobreNosotros from './components/SobreNosotros';
 import Menu from './components/Menu';
 

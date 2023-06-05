@@ -1,17 +1,10 @@
-import React from "react";
-import { Box, Heading, Text } from "@chakra-ui/react";
-import { TodoAdd } from "../components/TodoAdd";
-import { TodoList } from "../components/TodoList";
-import { useTodo } from "../hooks/useTodo";
-import {
-  confirmDeleteTodo,
-  showAddTodoAlert,
-  showCompleteTodoAlert,
-  confirmUncompleteTodo,
-  showNewTodoAlert,
-} from "../hooks/alert";
+import React, { useEffect } from 'react';
+import { Box, Heading, Stack, useColorModeValue } from '@chakra-ui/react';
+import { TaskList } from './Task/TaskList';
+import { useTodo } from '../hooks/useTodo';
+import { ModalTask } from './Task/ModalTask';
 
-function Tareas() {
+export const Tareas = () => {
   const {
     todos,
     todosCount,
@@ -22,60 +15,30 @@ function Tareas() {
     handleUpdateTodo,
   } = useTodo();
 
-  const onDeleteTodo = (id) => {
-    confirmDeleteTodo(() => {
-      handleDeleteTodo(id);
-    });
-  };
+  const bgColor = useColorModeValue("#fff", "#071b2f");
+  const textColor = useColorModeValue("black", "white");
 
-  const onCompleteTodo = (id) => {
-    handleCompleteTodo(id);
-    showCompleteTodoAlert();
-  };
-
-  const onUncompleteTodo = (id) => {
-    confirmUncompleteTodo(() => {
-      handleUpdateTodo(id, { completed: false });
-    });
-  };
-
-  const onNewTodo = (todo) => {
-    handleNewTodo(todo);
-    showNewTodoAlert();
-  };
+  useEffect(() => {
+    // Proximamente
+  }, [todos]);
 
   return (
-    <Box className="tareas">
-      <Box className="card-to-do">
-        <Heading as="h1" color="blue.500">
-          Lista de tareas
+    <Box p={4} className="container" bg={bgColor}>
+      <ModalTask handleNewTask={handleNewTodo} />
+      <Stack spacing={4} mb={4}>
+        <Heading as="h1" size="lg" color={textColor}>
+          Gestor de Tareas
         </Heading>
-        <Box className="counter-todos">
-          <Text>
-            N° Tareas: <span>{todosCount}</span>
-          </Text>
-          <Text>
-            Pendientes: <span>{pendingTodosCount}</span>
-          </Text>
-        </Box>
-
-        <Box className="add-todo">
-          <Heading as="h3" color="blue.500">
-            Agregar Tarea
-          </Heading>
-          <TodoAdd handleNewTodo={onNewTodo} showAddTodoAlert={showAddTodoAlert} />
-        </Box>
-
-        <TodoList
-          todos={todos}
-          handleUpdateTodo={handleUpdateTodo}
-          handleDeleteTodo={onDeleteTodo}
-          handleCompleteTodo={onCompleteTodo}
-          handleUncompleteTodo={onUncompleteTodo}
-        />
-      </Box>
+        <Heading as="h2" size="md" color="gray.500">
+          Total: {todosCount} | Pendientes: {pendingTodosCount}
+        </Heading>
+      </Stack>
+      <TaskList
+        tasks={todos}
+        handleUpdateTask={handleUpdateTodo}
+        handleDeleteTask={handleDeleteTodo}
+        handleCompleteTask={handleCompleteTodo}
+      />
     </Box>
   );
-}
-
-export default Tareas;
+};
